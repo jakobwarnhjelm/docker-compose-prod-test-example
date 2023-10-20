@@ -1,0 +1,22 @@
+services:
+
+  nodejs-app:
+    container_name : nodejswebappcontainername # används för docker-intern DNS
+    build :
+      context: webapp
+    # ports:
+    #   - "3000:3000"
+
+  nginx-proxy:
+    image: nginx
+    container_name: nginx_${ENVIRONMENT}
+    ports:
+      - ${MAIN_PORT}:8080 
+    depends_on:
+      - nodejs-app 
+    volumes:
+      - type: bind
+        source: ./nginx/nginx.conf
+        target: /etc/nginx/conf.d/default.conf
+        read_only: true    
+      - ./nginx/webroot:/www/web-root
