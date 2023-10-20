@@ -1,7 +1,7 @@
 services:
 
   nodejs-app:
-    container_name : nodejswebappcontainername # används för docker-intern DNS
+    container_name : ${ENV_TYPE}nodejswebappcontainername # används för docker-intern DNS
     build :
       context: webapp
     # ports:
@@ -9,14 +9,14 @@ services:
 
   nginx-proxy:
     image: nginx
-    container_name: nginx_${ENVIRONMENT}
+    container_name: ${ENV_TYPE}nginx
     ports:
-      - ${MAIN_PORT}:8080 
+      - ${NGINX_EXPOSED_PORT}:8080 
     depends_on:
       - nodejs-app 
     volumes:
       - type: bind
-        source: ./nginx/nginx.conf
+        source: ./nginx/nginx.${ENV_TYPE}.conf
         target: /etc/nginx/conf.d/default.conf
         read_only: true    
       - ./nginx/webroot:/www/web-root
