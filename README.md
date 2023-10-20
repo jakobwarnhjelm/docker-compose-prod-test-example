@@ -1,7 +1,9 @@
 Exempel för docker compose med nginx, prod och test
 
+# Launch procedure
 
-      --env-file stringArray       Specify an alternate environment file.
-  -f, --file stringArray           Compose configuration files
+Change .env so it matches test or prod
 
-docker compose -f compose.yaml --env-file .env
+Launch using
+
+docker compose up -d
