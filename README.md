@@ -20,6 +20,8 @@ The nginx.ENV.conf file is mounted runtime from the local filesystem to the ngin
  https://stackoverflow.com/a/62844707
 but might increase overall complexity unecessarily.
 
+Launching will create two docker compose groups named after the folders the repo is cloned into. The environment variables will ensure that the container names are unique. nginx.ENV.conf contains a hardcoded reference to the value of `ENV_TYPE`
+
 ## Launch procedure prod
 
 Create folder, clone git repo inside folder and fix `.env` file:
