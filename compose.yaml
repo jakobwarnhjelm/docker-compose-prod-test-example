@@ -4,9 +4,7 @@ services:
     container_name : ${ENV_TYPE}_nodejswebappcontainername # används för docker-intern DNS
     build :
       context: webapp
-    # ports:
-    #   - "3000:3000"
-
+      
   nginx-proxy:
     image: nginx
     container_name: ${ENV_TYPE}_nginx
